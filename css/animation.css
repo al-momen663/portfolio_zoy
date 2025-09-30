@@ -31,6 +31,32 @@
     animation: fadeIn 1s ease-out forwards;
 }
 
+.fade-in-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.fade-in-text:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.fade-in-text:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.fade-in-text:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.fade-in-text:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.fade-in-text:nth-child(5) {
+    animation-delay: 1s;
+}
+
 /* Fade In Up Animation */
 @keyframes fadeInUp {
     from {
@@ -120,12 +146,15 @@
 @keyframes pulse {
     0% {
         transform: scale(1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
     50% {
         transform: scale(1.05);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
     }
     100% {
         transform: scale(1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -139,6 +168,10 @@
 
 .pulse-fast {
     animation: pulse 1s infinite;
+}
+
+.pulse-animation {
+    animation: pulse 2s ease-in-out infinite;
 }
 
 /* Bounce Animation */
@@ -156,6 +189,66 @@
 
 .bounce {
     animation: bounce 2s infinite;
+}
+
+/* Typewriter Effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: var(--accent-color);
+    }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid var(--primary-color);
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+.typewriter-no-caret {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typewriter 3s steps(40, end);
+}
+
+/* Glowing Text Animation */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 107, 107, 0.5),
+                     0 0 10px rgba(255, 107, 107, 0.3),
+                     0 0 15px rgba(255, 107, 107, 0.2);
+    }
+    to {
+        text-shadow: 0 0 10px rgba(255, 107, 107, 0.8),
+                     0 0 20px rgba(255, 107, 107, 0.6),
+                     0 0 30px rgba(255, 107, 107, 0.4);
+    }
+}
+
+.text-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.text-glow-slow {
+    animation: glow 3s ease-in-out infinite;
+}
+
+.text-glow-fast {
+    animation: glow 1s ease-in-out infinite;
 }
 
 /* Slide In Animation */
@@ -219,40 +312,6 @@
 
 .slide-in-down {
     animation: slideInDown 0.8s ease-out forwards;
-}
-
-/* Typewriter Effect */
-@keyframes typewriter {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes blink-caret {
-    from, to {
-        border-color: transparent;
-    }
-    50% {
-        border-color: var(--primary-color);
-    }
-}
-
-.typewriter {
-    overflow: hidden;
-    border-right: 3px solid var(--primary-color);
-    white-space: nowrap;
-    margin: 0 auto;
-    animation: typewriter 3s steps(40, end), blink-caret 0.75s step-end infinite;
-}
-
-.typewriter-no-caret {
-    overflow: hidden;
-    white-space: nowrap;
-    margin: 0 auto;
-    animation: typewriter 3s steps(40, end);
 }
 
 /* Hover Effects */
@@ -361,28 +420,6 @@
 
 .particle-fast {
     animation: float-particle 10s linear infinite;
-}
-
-/* Text Glow Animation */
-@keyframes text-glow {
-    0%, 100% {
-        text-shadow: 0 0 10px rgba(74, 108, 247, 0.5);
-    }
-    50% {
-        text-shadow: 0 0 20px rgba(74, 108, 247, 0.8), 0 0 30px rgba(74, 108, 247, 0.6);
-    }
-}
-
-.text-glow {
-    animation: text-glow 2s ease-in-out infinite;
-}
-
-.text-glow-slow {
-    animation: text-glow 3s ease-in-out infinite;
-}
-
-.text-glow-fast {
-    animation: text-glow 1s ease-in-out infinite;
 }
 
 /* Shake Animation */

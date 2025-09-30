@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:,">
-
-
 </head>
 <body>
     <!-- Navigation -->
@@ -17,6 +15,7 @@
             <div class="nav-logo">
                 <a href="index.html">
                     <img src="images/Fozle Rabbi Khan ICON.png" alt="FOZLE Logo" class="logo-img">
+                    <span class="logo-name">Md Fozle Rabbi Khan</span>
                 </a>
             </div>
             <div class="nav-menu" id="nav-menu">
@@ -115,34 +114,57 @@
             
             <!-- Experience Section -->
             <div id="experience" class="about-subsection">
-                <h2>Work Experience</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">2022 - Present</div>
-                        <div class="timeline-content">
-                            <h3>Bike Care Point</h3>
-                            <p><strong>Product Marketing & SEO Analysis</strong></p>
-                            <p>Developing and implementing product marketing strategies, conducting SEO analysis to improve online visibility, and managing digital campaigns to drive customer engagement.</p>
-                        </div>
+    <h2>Work Experience</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-date">2022 - Present</div>
+            <div class="timeline-content">
+                <div class="company-header">
+                    <div class="company-logo">
+                        <img src="logo/bpc.png" alt="Bike Care Point" class="logo-img">
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2021 - Present</div>
-                        <div class="timeline-content">
-                            <h3>Upwork</h3>
-                            <p><strong>YouTube SEO Expert | YouTube Thumbnail | Organic Growth | Optimization</strong></p>
-                            <p>Providing YouTube SEO services including channel optimization, video SEO, thumbnail design, and strategies for organic growth. Helping clients increase views, subscribers, and engagement.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">2020 - Present</div>
-                        <div class="timeline-content">
-                            <h3>Fiverr</h3>
-                            <p><strong>SEO Analyst & Digital Marketing Specialist</strong></p>
-                            <p>Offering comprehensive SEO analysis and digital marketing services including website audits, keyword research, competitor analysis, and strategy development for improved search rankings.</p>
-                        </div>
+                    <div class="company-info">
+                        <h3>Bike Care Point</h3>
+                        <p><strong>Product Marketing & SEO Analysis</strong></p>
                     </div>
                 </div>
+                <p>Developing and implementing product marketing strategies, conducting SEO analysis to improve online visibility, and managing digital campaigns to drive customer engagement.</p>
             </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">2021 - Present</div>
+            <div class="timeline-content">
+                <div class="company-header">
+                    <div class="company-logo">
+                        <img src="logo/Upwork-logo.png" alt="Upwork" class="logo-img">
+                    </div>
+                    <div class="company-info">
+                        <h3>Upwork</h3>
+                        <p><strong>YouTube SEO Expert | YouTube Thumbnail | Organic Growth | Optimization</strong></p>
+                    </div>
+                </div>
+                <p>Providing YouTube SEO services including channel optimization, video SEO, thumbnail design, and strategies for organic growth. Helping clients increase views, subscribers, and engagement.</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">2020 - Present</div>
+            <div class="timeline-content">
+                <div class="company-header">
+                    <div class="company-logo">
+                        <img src="logo/logo-fiverr.png" alt="Fiverr" class="logo-img">
+                    </div>
+                    <div class="company-info">
+                        <h3>Fiverr</h3>
+                        <p><strong>SEO Analyst & Digital Marketing Specialist</strong></p>
+                    </div>
+                </div>
+                <p>Offering comprehensive SEO analysis and digital marketing services including website audits, keyword research, competitor analysis, and strategy development for improved search rankings.</p>
+            </div>
+        </div>
+    </div>
+</div>
             
             <!-- Education Section -->
             <div id="education" class="about-subsection">
@@ -171,56 +193,134 @@
                 </div>
             </div>
             
-<!-- Certificates Section -->
-<div id="certificates" class="about-subsection">
-    <h2>Certificates</h2>
-    <div class="certificates-grid">
-        <div class="certificate-item">
-            <div class="certificate-image-container">
-                <img src="images/Certificate/YouTube SEO.png" alt="Introduction to YouTube SEO Certificate" class="certificate-img">
-                <div class="certificate-overlay">
-                    <button class="view-certificate-btn" onclick="openCertificateModal()">
-                        <i class="fas fa-expand"></i> View Full Certificate
-                    </button>
+            <!-- Certificates Section -->
+            <div id="certificates" class="about-subsection">
+                <h2>Certificates</h2>
+                <div class="certificates-grid">
+                    <div class="certificate-item">
+                        <div class="certificate-image-container">
+                            <img src="images/Certificate/YouTube SEO.png" alt="Introduction to YouTube SEO Certificate" class="certificate-img">
+                            <div class="certificate-overlay">
+                                <button class="view-certificate-btn" 
+                                    data-image="images/Certificate/YouTube SEO.png"
+                                    data-title="Introduction to YouTube SEO" 
+                                    data-description="Completed comprehensive training in YouTube search engine optimization, covering video ranking algorithms, keyword research, thumbnail optimization, and audience engagement strategies."
+                                    data-date="September 26, 2025" 
+                                    data-issuer="Simplilearn">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </button>
+                            </div>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>Introduction to YouTube SEO</h3>
+                            <p>Completed comprehensive training in YouTube search engine optimization, covering video ranking algorithms, keyword research, thumbnail optimization, and audience engagement strategies. Gained expertise in maximizing video visibility and channel growth through proven SEO techniques.</p>
+                            <div class="certificate-details">
+                                <span class="certificate-date">September 2025</span>
+                                <span class="certificate-issuer">Simplilearn</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Placeholder for future certificates -->
+                    <div class="certificate-item coming-soon">
+                        <div class="certificate-placeholder">
+                            <i class="fas fa-award"></i>
+                            <h4>More Certificates Coming Soon</h4>
+                            <p>Continuously updating skills with new digital marketing certifications</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="certificate-info">
-                <h3>Introduction to YouTube SEO</h3>
-                <p>Completed comprehensive training in YouTube search engine optimization, covering video ranking algorithms, keyword research, thumbnail optimization, and audience engagement strategies. Gained expertise in maximizing video visibility and channel growth through proven SEO techniques.</p>
-                <div class="certificate-details">
-                    <span class="certificate-date">September 2025</span>
-                    <span class="certificate-issuer">Simplilearn</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Placeholder for future certificates -->
-        <div class="certificate-item coming-soon">
-            <div class="certificate-placeholder">
-                <i class="fas fa-award"></i>
-                <h4>More Certificates Coming Soon</h4>
-                <p>Continuously updating skills with new digital marketing certifications</p>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Certificate Modal -->
-<div id="certificateModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeCertificateModal()">&times;</span>
-        <img src="/images/Certificate/YouTube SEO.png" alt="Full Certificate View" class="modal-certificate-img">
-        <div class="modal-certificate-info">
-            <h3>Introduction to YouTube SEO</h3>
-            <p><strong>Issued by:</strong> Simplilearn</p>
-            <p><strong>Date:</strong> September 26, 2025</p>
-            <p><strong>Certificate Code:</strong> 9053475</p>
-        </div>
-    </div>
-</div>
+            <!-- Certificate Modal -->
+            <div id="certificateModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <img id="modalCertificateImage" src="" alt="Full Certificate View" class="modal-certificate-img">
+                    <div class="modal-certificate-info">
+                        <h3 id="modalCertificateTitle">Certificate Title</h3>
+                        <p id="modalCertificateDescription">Certificate description</p>
+                        <p><strong>Date:</strong> <span id="modalCertificateDate">Date</span></p>
+                        <p><strong>Issued by:</strong> <span id="modalCertificateIssuer">Issuer</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <script src="js/main.js"></script>
+    
+    <!-- Certificate Modal Script -->
+    <script>
+        // Certificate Modal Functions
+        function openCertificateModal(imageSrc, title, description, date, issuer) {
+            const modal = document.getElementById('certificateModal');
+            const modalImage = document.getElementById('modalCertificateImage');
+            const modalTitle = document.getElementById('modalCertificateTitle');
+            const modalDescription = document.getElementById('modalCertificateDescription');
+            const modalDate = document.getElementById('modalCertificateDate');
+            const modalIssuer = document.getElementById('modalCertificateIssuer');
+            
+            if (modal && modalImage) {
+                modalImage.src = imageSrc;
+                modalImage.alt = title;
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modalDate.textContent = date;
+                modalIssuer.textContent = issuer;
+                
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('certificateModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Initialize certificate buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const certificateButtons = document.querySelectorAll('.view-certificate-btn');
+            
+            certificateButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const imageSrc = this.getAttribute('data-image');
+                    const title = this.getAttribute('data-title');
+                    const description = this.getAttribute('data-description');
+                    const date = this.getAttribute('data-date');
+                    const issuer = this.getAttribute('data-issuer');
+                    
+                    openCertificateModal(imageSrc, title, description, date, issuer);
+                });
+            });
+
+            // Close modal when clicking outside or on close button
+            const modal = document.getElementById('certificateModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeCertificateModal();
+                    }
+                });
+                
+                const closeBtn = document.querySelector('.close-modal');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', closeCertificateModal);
+                }
+                
+                // Escape key to close
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeCertificateModal();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
