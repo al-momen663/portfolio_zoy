@@ -97,16 +97,18 @@ body {
     }
 }
 
-/* Navigation */
+/* Enhanced Navigation Bar */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--white);
-    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    padding: 15px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 
 .nav-container {
@@ -118,41 +120,740 @@ body {
     padding: 0 20px;
 }
 
-.nav-logo a {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    text-decoration: none;
+/* Enhanced Logo */
+.nav-logo {
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
+.logo-img {
+    height: 50px !important;
+    width: auto;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(74, 108, 247, 0.3));
+}
+
+.logo-img:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 6px 12px rgba(74, 108, 247, 0.5));
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-left: 10px;
+    text-shadow: 0 4px 8px rgba(74, 108, 247, 0.2);
+}
+
+/* Enhanced Navigation Menu */
 .nav-menu {
     display: flex;
-    gap: 30px;
+    gap: 35px;
+    align-items: center;
 }
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-    transition: var(--transition);
+    color: var(--dark-color);
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
     position: relative;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.nav-link:hover i,
+.nav-link.active i {
+    transform: scale(1.2);
     color: var(--primary-color);
 }
 
 .nav-link.active::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -2px;
     left: 0;
     width: 100%;
-    height: 2px;
-    background-color: var(--primary-color);
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Enhanced Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(74, 108, 247, 0.4);
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* Enhanced Gradient Backgrounds */
+.gradient-bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-bg-secondary {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.gradient-bg-success {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.gradient-bg-warning {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.gradient-bg-dark {
+    background: linear-gradient(135deg, #4a6cf7 0%, #1d2144 100%);
+}
+
+/* Animated Gradient Background */
+.animated-gradient {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+/* Enhanced Home Section */
+.home-section {
+    padding-top: 150px;
+    background: linear-gradient(135deg, #f5f8ff 0%, #e6ecff 50%, #f0f4ff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(74, 108, 247, 0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Enhanced Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(74, 108, 247, 0.4);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(74, 108, 247, 0.6);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.secondary-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 108, 247, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.secondary-btn:hover::after {
+    left: 100%;
+}
+
+.secondary-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(74, 108, 247, 0.3);
+}
+
+/* Enhanced Social Media Icons */
+.social-links {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.social-links h3 {
+    margin-bottom: 25px;
+    color: var(--dark-color);
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.social-icon:hover::before {
+    left: 100%;
+}
+
+.social-icon:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Individual Social Media Brand Colors */
+.social-icon.facebook {
+    background: linear-gradient(135deg, #1877F2, #0D5FD6);
+}
+
+.social-icon.facebook:hover {
+    background: linear-gradient(135deg, #0D5FD6, #1877F2);
+    border-color: #1877F2;
+}
+
+.social-icon.twitter {
+    background: linear-gradient(135deg, #1DA1F2, #0C8BD6);
+}
+
+.social-icon.twitter:hover {
+    background: linear-gradient(135deg, #0C8BD6, #1DA1F2);
+    border-color: #1DA1F2;
+}
+
+.social-icon.instagram {
+    background: linear-gradient(135deg, #E4405F, #C13584, #833AB4, #5851DB, #405DE6);
+    background-size: 400% 400%;
+    animation: instagram-gradient 3s ease infinite;
+}
+
+@keyframes instagram-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.social-icon.instagram:hover {
+    animation: instagram-gradient 1s ease infinite;
+    border-color: #E4405F;
+}
+
+.social-icon.linkedin {
+    background: linear-gradient(135deg, #0A66C2, #004182);
+}
+
+.social-icon.linkedin:hover {
+    background: linear-gradient(135deg, #004182, #0A66C2);
+    border-color: #0A66C2;
+}
+
+.social-icon.github {
+    background: linear-gradient(135deg, #333, #000);
+}
+
+.social-icon.github:hover {
+    background: linear-gradient(135deg, #000, #333);
+    border-color: #333;
+}
+
+.social-icon.whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
+.social-icon.whatsapp:hover {
+    background: linear-gradient(135deg, #128C7E, #25D366);
+    border-color: #25D366;
+}
+
+.social-icon.email {
+    background: linear-gradient(135deg, #EA4335, #D14836);
+}
+
+.social-icon.email:hover {
+    background: linear-gradient(135deg, #D14836, #EA4335);
+    border-color: #EA4335;
+}
+
+.social-icon.portfolio {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.social-icon.portfolio:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    border-color: var(--primary-color);
+}
+
+/* Social Icon Tooltip */
+.social-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: var(--dark-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.social-icon:hover::after {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    bottom: -35px;
+}
+
+/* Social Icon Pulse Animation */
+.social-icon.pulse {
+    animation: social-pulse 2s infinite;
+}
+
+@keyframes social-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(74, 108, 247, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(74, 108, 247, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(74, 108, 247, 0);
+    }
+}
+
+/* Social Media Icons in Footer */
+.footer-social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.footer-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.footer-social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Floating Social Media Sidebar */
+.social-sidebar {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.social-sidebar .social-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+}
+
+/* Responsive Social Icons */
+@media (max-width: 768px) {
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+    
+    .social-sidebar {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        transform: none;
+        margin: 30px 0;
+    }
+    
+    .footer-social-icons {
+        gap: 10px;
+    }
+    
+    .footer-social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-icons {
+        gap: 12px;
+    }
+    
+    .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .social-links h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Social Media Counter Animation */
+.social-counter {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    animation: counter-bounce 2s infinite;
+}
+
+@keyframes counter-bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-3px);
+    }
+    60% {
+        transform: translateY(-2px);
+    }
+}
+/* Enhanced Cards with Hover Effects */
+.achievement-card,
+.client-item,
+.education-item,
+.project-item,
+.certificate-item {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card::before,
+.client-item::before,
+.education-item::before,
+.project-item::before,
+.certificate-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(74, 108, 247, 0.05), transparent);
+    transition: left 0.5s;
+}
+
+.achievement-card:hover::before,
+.client-item:hover::before,
+.education-item:hover::before,
+.project-item:hover::before,
+.certificate-item:hover::before {
+    left: 100%;
+}
+
+.achievement-card:hover,
+.client-item:hover,
+.education-item:hover,
+.project-item:hover,
+.certificate-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(74, 108, 247, 0.3);
+}
+
+/* Enhanced Section Titles */
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    font-weight: 800;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 5px;
+    animation: pulse 2s infinite;
+}
+
+/* Floating Particles Background */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    animation: float-particle 15s linear infinite;
+}
+
+/* Enhanced Form Elements */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+    background: rgba(255,255,255,0.95);
+    transform: translateY(-2px);
+}
+
+/* Enhanced Scroll Progress */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), #23a6d5, #23d5ab);
+    z-index: 1001;
+    transition: width 0.1s ease;
+    box-shadow: 0 2px 10px rgba(74, 108, 247, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%);
+        backdrop-filter: blur(20px);
+        text-align: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        padding: 30px 0;
+        gap: 0;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        display: flex;
+        padding: 15px 0;
+        width: 100%;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+    }
+    
+    .logo-img {
+        height: 40px !important;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+    }
+}
+
+/* Additional Animations */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(74, 108, 247, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(74, 108, 247, 0.8);
+    }
+}
+
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake:hover {
+    animation: shake 0.5s ease-in-out;
 }
 
 .hamburger {
@@ -303,33 +1004,184 @@ section {
     color: var(--dark-color);
 }
 
+/* Enhanced Social Media Icons */
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: var(--white);
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    color: var(--primary-color);
-    font-size: 1.2rem;
+    color: white;
+    font-size: 1.3rem;
     text-decoration: none;
-    transition: var(--transition);
-    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.social-icon:hover::before {
+    left: 100%;
 }
 
 .social-icon:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
+/* Individual Social Media Brand Colors */
+.social-icon.facebook {
+    background: linear-gradient(135deg, #1877F2, #0D5FD6);
+}
+
+.social-icon.facebook:hover {
+    background: linear-gradient(135deg, #0D5FD6, #1877F2);
+    border-color: #1877F2;
+}
+
+.social-icon.twitter {
+    background: linear-gradient(135deg, #1DA1F2, #0C8BD6);
+}
+
+.social-icon.twitter:hover {
+    background: linear-gradient(135deg, #0C8BD6, #1DA1F2);
+    border-color: #1DA1F2;
+}
+
+.social-icon.instagram {
+    background: linear-gradient(135deg, #E4405F, #C13584, #833AB4, #5851DB, #405DE6);
+    background-size: 400% 400%;
+    animation: instagram-gradient 4s ease infinite;
+}
+
+@keyframes instagram-gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.social-icon.instagram:hover {
+    animation: instagram-gradient 1s ease infinite;
+    border-color: #E4405F;
+}
+
+.social-icon.linkedin {
+    background: linear-gradient(135deg, #0A66C2, #004182);
+}
+
+.social-icon.linkedin:hover {
+    background: linear-gradient(135deg, #004182, #0A66C2);
+    border-color: #0A66C2;
+}
+
+.social-icon.youtube {
+    background: linear-gradient(135deg, #FF0000, #CC0000);
+}
+
+.social-icon.youtube:hover {
+    background: linear-gradient(135deg, #CC0000, #FF0000);
+    border-color: #FF0000;
+}
+
+.social-icon.google-business {
+    background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);
+    background-size: 400% 400%;
+    animation: google-gradient 4s ease infinite;
+}
+
+@keyframes google-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.social-icon.google-business:hover {
+    animation: google-gradient 1s ease infinite;
+    border-color: #4285F4;
+    transform: translateY(-5px) scale(1.1) rotate(5deg);
+}
+
+/* Tooltip Styles */
+.social-icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.social-icon:hover::after {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    bottom: -30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .social-icons {
+        gap: 12px;
+    }
+    
+    .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-icons {
+        gap: 10px;
+    }
+    
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
 /* About Section */
 .about-section {
     padding-top: 150px;

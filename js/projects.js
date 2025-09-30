@@ -1,32 +1,141 @@
-// Projects Gallery Functionality
+// Projects Gallery Functionality with Enhanced Error Handling
 let currentImageIndex = 0;
 let currentGallery = [];
 let isModalOpen = false;
 
-// Cache DOM elements
-const imageModal = document.getElementById('imageModal');
-const modalImage = document.getElementById('modalImage');
-const closeModalBtn = document.querySelector('.close-modal');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
+// Cache DOM elements with null checks
+let imageModal, modalImage, closeModalBtn, prevBtn, nextBtn;
 
-function openImageModal(imageSrc) {
-    if (!imageModal || !modalImage) return;
+// Initialize projects gallery
+function initializeProjectsGallery() {
+    console.log('Initializing projects gallery...');
+    
+    // Cache DOM elements safely
+    imageModal = document.getElementById('imageModal');
+    modalImage = document.getElementById('modalImage');
+    closeModalBtn = document.querySelector('.close-modal');
+    prevBtn = document.querySelector('.prev-btn');
+    nextBtn = document.querySelector('.next-btn');
+    
+    // Initialize event listeners
+    initializeEventListeners();
+    initGalleryAnimations();
+    addModalStyles();
+    
+    console.log('Projects gallery initialized');
+}
+
+// Initialize Event Listeners
+function initializeEventListeners() {
+    console.log('Initializing event listeners...');
+    
+    // Close modal events
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeImageModal);
+    } else {
+        console.warn('Close modal button not found');
+    }
+    
+    // Navigation buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => navigateImage(-1));
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => navigateImage(1));
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', handleKeyboardNavigation);
+    
+    // Close modal when clicking outside image
+    if (imageModal) {
+        imageModal.addEventListener('click', (event) => {
+            if (event.target === imageModal) {
+                closeImageModal();
+            }
+        });
+    }
+    
+    // Initialize touch support for mobile
+    initializeTouchSupport();
+    
+    // Add click listeners to gallery items - FIXED APPROACH
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+        img.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openImageModal(this.src, e);
+        });
+    });
+    
+    // Alternative approach for gallery items that might have wrapper divs
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const img = this.querySelector('img');
+            if (img) {
+                openImageModal(img.src, e);
+            }
+        });
+    });
+    
+    console.log('Event listeners initialized');
+}
+
+// Enhanced openImageModal with better error handling
+function openImageModal(imageSrc, event) {
+    console.log('Opening image modal for:', imageSrc);
+    
+    if (!imageModal || !modalImage) {
+        console.error('Modal elements not found');
+        showNotification('Gallery not available', 'error');
+        return;
+    }
     
     try {
-        // Get all images in the current section
-        const section = event.target.closest('.project-category');
-        if (!section) return;
+        // Get all images in the current section - with fallback if event is undefined
+        let section;
+        if (event && event.target) {
+            section = event.target.closest('.project-category');
+        } else {
+            // Fallback: find the section containing this image
+            const imgElement = document.querySelector(`img[src="${imageSrc}"]`);
+            if (imgElement) {
+                section = imgElement.closest('.project-category');
+            }
+        }
+        
+        if (!section) {
+            console.warn('No project section found, trying alternative method');
+            // Try to find any project category
+            section = document.querySelector('.project-category');
+        }
+        
+        if (!section) {
+            console.error('Could not find any project section');
+            showNotification('Gallery section not found', 'error');
+            return;
+        }
         
         const galleryItems = section.querySelectorAll('.gallery-item img');
+        console.log('Found gallery items:', galleryItems.length);
+        
+        if (galleryItems.length === 0) {
+            showNotification('No images available in this section', 'info');
+            return;
+        }
         
         // Create array of image sources with fallback handling
         currentGallery = Array.from(galleryItems).map(img => {
-            // Check if image exists, otherwise use placeholder
             return img.complete && img.naturalHeight !== 0 ? img.src : createPlaceholderImage(img.alt);
         });
         
         currentImageIndex = Math.max(0, currentGallery.indexOf(imageSrc));
+        if (currentImageIndex === -1) {
+            currentImageIndex = 0; // Fallback to first image
+        }
         
         // Preload adjacent images for smoother navigation
         preloadAdjacentImages(currentImageIndex);
@@ -40,9 +149,11 @@ function openImageModal(imageSrc) {
             modalImage.src = imageSrc;
             modalImage.classList.remove('loading');
             modalImage.classList.add('loaded');
+            console.log('Modal image loaded successfully');
         };
         
         img.onerror = () => {
+            console.error('Failed to load modal image:', imageSrc);
             modalImage.src = createPlaceholderImage('Image not available');
             modalImage.classList.remove('loading');
             modalImage.classList.add('error');
@@ -59,12 +170,18 @@ function openImageModal(imageSrc) {
         updateNavigationButtons();
         
         // Add focus for accessibility
-        closeModalBtn.focus();
+        if (closeModalBtn) closeModalBtn.focus();
         
     } catch (error) {
         console.error('Error opening image modal:', error);
-        showModalError('Failed to open image');
+        showModalError('Failed to open image gallery');
     }
+}
+
+// Alternative function for HTML onclick attributes
+function openImageModalSimple(imageSrc) {
+    console.log('Opening image modal (simple) for:', imageSrc);
+    openImageModal(imageSrc, null);
 }
 
 function closeImageModal() {
@@ -124,6 +241,8 @@ function navigateImage(direction) {
 }
 
 function preloadAdjacentImages(currentIndex) {
+    if (currentGallery.length <= 1) return;
+    
     // Preload next and previous images for smoother navigation
     const indicesToPreload = [
         (currentIndex - 1 + currentGallery.length) % currentGallery.length,
@@ -171,7 +290,7 @@ function createPlaceholderImage(altText) {
             <rect width="100%" height="100%" fill="url(#grad)"/>
             <rect x="10" y="10" width="380" height="280" fill="none" stroke="white" stroke-width="2" stroke-dasharray="5,5"/>
             <text x="50%" y="45%" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="bold">
-                ${altText}
+                ${altText || 'Image'}
             </text>
             <text x="50%" y="55%" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle" opacity="0.8">
                 Click to view full size
@@ -187,38 +306,6 @@ function showModalError(message) {
         modalImage.classList.remove('loading');
         modalImage.classList.add('error');
     }
-}
-
-// Event Listeners
-function initializeEventListeners() {
-    // Close modal events
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeImageModal);
-    }
-    
-    // Navigation buttons
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => navigateImage(-1));
-    }
-    
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => navigateImage(1));
-    }
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', handleKeyboardNavigation);
-    
-    // Close modal when clicking outside image
-    if (imageModal) {
-        imageModal.addEventListener('click', (event) => {
-            if (event.target === imageModal) {
-                closeImageModal();
-            }
-        });
-    }
-    
-    // Swipe support for touch devices
-    initializeTouchSupport();
 }
 
 function handleKeyboardNavigation(event) {
@@ -343,20 +430,7 @@ function initGalleryAnimations() {
     });
 }
 
-// Performance optimization: Debounce scroll events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Add CSS for loading states
+// Add CSS for modal styles
 function addModalStyles() {
     const styles = `
         .image-modal .modal-content img.loading {
@@ -403,24 +477,87 @@ function addModalStyles() {
         }
     `;
     
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = styles;
-    document.head.appendChild(styleSheet);
+    // Only add styles if they don't exist
+    if (!document.querySelector('#modal-styles')) {
+        const styleSheet = document.createElement('style');
+        styleSheet.id = 'modal-styles';
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
+    }
 }
 
-// Export functions for global access (if needed)
-window.ImageGallery = {
-    openImageModal,
-    closeImageModal,
-    navigateImage,
-    initGalleryAnimations
-};
+// Notification function for projects gallery
+function showNotification(message, type = 'info') {
+    // Remove existing notifications
+    const existingNotification = document.querySelector('.notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'error' ? '#f44336' : type === 'success' ? '#4CAF50' : '#2196F3'};
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 400px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }
+    }, 5000);
+}
 
-// Initialize everything when DOM is loaded
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (isModalOpen) {
+        closeImageModal();
+    }
+});
+
+// Update the initialization at the bottom of projects.js:
 document.addEventListener('DOMContentLoaded', function() {
-    initializeEventListeners();
-    initGalleryAnimations();
-    addModalStyles();
+    console.log('DOM loaded - initializing projects gallery');
+    initializeProjectsGallery();
     
     // Add performance monitoring
     if (typeof PerformanceObserver !== 'undefined') {
@@ -435,9 +572,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Cleanup on page unload
-window.addEventListener('beforeunload', () => {
-    if (isModalOpen) {
-        closeImageModal();
-    }
-});
+// Export functions for global access
+window.ImageGallery = {
+    openImageModal,
+    openImageModalSimple,
+    closeImageModal,
+    navigateImage,
+    initGalleryAnimations
+};
